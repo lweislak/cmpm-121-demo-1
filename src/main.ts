@@ -16,7 +16,7 @@ button.innerText = "🧂"; //Salt shaker emoji
 
 //Increment (Step 2)
 let counter: number = 0;
-button.addEventListener("click", function() {
-    counter += 1;
-    button.innerText = `🧂 Shaken ${counter} Times`;
+button.addEventListener("click", function () {
+  counter += 1;
+  button.innerText = `🧂 Shaken ${counter} Times`;
 });
