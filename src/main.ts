@@ -27,7 +27,7 @@ button.addEventListener("click", function () {
 });
 
 //Automatic Clicking (Step 3)
-const intervalID: number = window.setInterval(() => {
+window.setInterval(() => {
   counter += 1;
   updateButton();
 }, 1000);
