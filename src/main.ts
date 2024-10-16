@@ -14,20 +14,31 @@ const button = document.createElement("button");
 app.append(button);
 button.innerText = "🧂"; //Salt shaker emoji
 
-//Helper function that updates the button text
-function updateButton() {
-  button.innerText = `🧂 Levels Increased By x ${counter}`;
-}
+//
 
 //Increment Counter (Step 2)
-let counter: number = 0;
+let counter: number = 0.0;
 button.addEventListener("click", function () {
-  counter += 1;
+  counter += 1.0;
   updateButton();
 });
 
-//Automatic Clicking (Step 3)
-window.setInterval(() => {
-  counter += 1;
+//Helper function that updates the button text
+function updateButton() {
+  //Code for rounding decimal places found at: https://stackoverflow.com/a/5623156
+  const count = counter.toFixed(2).replace(/\.00$/, ''); //Rounds to the hundredths place
+  button.innerText = `🧂 Levels Increased By x ${count}`;
+} 
+
+
+requestAnimationFrame(step.bind(performance.now()));
+
+function step(prevTime: number) { 
+  const currTime = performance.now();
+  const seconds = (currTime - prevTime)/1000; //Convert from milliseconds to seconds
+
+  counter += seconds;
   updateButton();
-}, 1000);
+
+  requestAnimationFrame(step.bind(currTime));
+}
