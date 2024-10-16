@@ -26,16 +26,15 @@ button.addEventListener("click", function () {
 //Helper function that updates the button text
 function updateButton() {
   //Code for rounding decimal places found at: https://stackoverflow.com/a/5623156
-  const count = counter.toFixed(2).replace(/\.00$/, ''); //Rounds to the hundredths place
+  const count = counter.toFixed(2).replace(/\.00$/, ""); //Rounds to the hundredths place
   button.innerText = `🧂 Levels Increased By x ${count}`;
-} 
-
+}
 
 requestAnimationFrame(step.bind(performance.now()));
 
-function step(prevTime: number) { 
+function step(prevTime: number) {
   const currTime = performance.now();
-  const seconds = (currTime - prevTime)/1000; //Convert from milliseconds to seconds
+  const seconds = (currTime - prevTime) / 1000; //Convert from milliseconds to seconds
 
   counter += seconds;
   updateButton();
