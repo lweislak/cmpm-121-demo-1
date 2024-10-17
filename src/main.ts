@@ -14,7 +14,6 @@ const button = document.createElement("button");
 app.append(button);
 button.innerText = "🧂"; //Salt shaker emoji
 
-
 //Create Cost 10 Upgrade Button (Step 5)
 const upgrade10 = document.createElement("button");
 upgrade10.innerText = "Play a match of Overwatch\nCost: 10";
