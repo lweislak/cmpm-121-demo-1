@@ -36,7 +36,6 @@ upgrade.addEventListener("click", function () {
   requestAnimationFrame(step.bind(performance.now()));
   counter -= 10.0;
   updateButton();
-  console.log("Counter:", counter); //TEST
 });
 
 //Increment Counter (Step 2)
@@ -52,7 +51,6 @@ function updateButton() {
   const count = counter.toFixed(2).replace(/\.00$/, ""); //Rounds to the hundredths place
   button.innerText = `🧂 Levels Increased By x ${count}`;
   checkUpgradeButton();
-  console.log("TEST");
 }
 
 //Allows for gradual growth of the counter value
