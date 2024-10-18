@@ -14,7 +14,6 @@ const button = document.createElement("button");
 app.append(button);
 button.innerText = "🧂"; //Salt shaker emoji
 
-
 //Create upgrade buttons
 const Overwatch = document.createElement("button");
 Overwatch.innerText = `Play a match of Overwatch\nCost: 10`;
@@ -28,19 +27,18 @@ const LoL = document.createElement("button");
 LoL.innerText = `Play a match of League of Legends\nCost: 1000`;
 setupButton(LoL, "translateY(200%)"); //Move button
 
-
 interface Item {
-  name: string,
-  button: HTMLButtonElement,
-  cost: number,
-  rate: number,
-  clicks: number
-};
+  name: string;
+  button: HTMLButtonElement;
+  cost: number;
+  rate: number;
+  clicks: number;
+}
 
 const avaliableItems: Item[] = [
-  {name: "Overwatch", button: Overwatch, cost: 10, rate: 0.1, clicks: 0},
-  {name: "Valorant", button: Valorant, cost: 100, rate: 2.0, clicks: 0},
-  {name: "League of Legends", button: LoL, cost: 1000, rate: 50, clicks: 0},
+  { name: "Overwatch", button: Overwatch, cost: 10, rate: 0.1, clicks: 0 },
+  { name: "Valorant", button: Valorant, cost: 100, rate: 2.0, clicks: 0 },
+  { name: "League of Legends", button: LoL, cost: 1000, rate: 50, clicks: 0 },
 ];
 
 //Increment button counter
@@ -56,7 +54,7 @@ for (const item of avaliableItems) {
     requestAnimationFrame(step.bind(performance.now()));
     counter -= item.cost;
     item.cost *= 1.15;
-    item.button.innerText = `Play a match of ${item.name}\nCost: ${roundHundredths(item.cost)}`
+    item.button.innerText = `Play a match of ${item.name}\nCost: ${roundHundredths(item.cost)}`;
     updateButton();
   });
 }
@@ -88,7 +86,7 @@ function checkUpgradeButton(upgrade: HTMLButtonElement, amount: number) {
 //Helper function that updates the button
 function updateButton() {
   button.innerText = `🧂 Levels Increased By x ${roundHundredths(counter)}`;
-  for(const item of avaliableItems) {
+  for (const item of avaliableItems) {
     checkUpgradeButton(item.button, item.cost);
   }
 }
