@@ -29,17 +29,33 @@ const upgrade1k = document.createElement("button");
 upgrade1k.innerText = "Play a match of League of Legends\nCost: 1,000";
 setupButton(upgrade1k, "translateY(200%)");
 
+
 //Increment Counter (Step 2)
-let counter: number = 0.0;
+let counter: number = 1000.0;
 button.addEventListener("click", function () {
   counter += 1.0;
   updateButton();
 });
 
 //If button is shown, check for a click
+//TODO: Condense into function
 upgrade10.addEventListener("click", function () {
   requestAnimationFrame(step.bind(performance.now()));
   counter -= 10.0;
+  updateButton();
+});
+upgrade100.addEventListener("click", function () {
+  for(let i = 0; i < 100; i++) { //Change growth rate. This is janky
+    requestAnimationFrame(step.bind(performance.now()));
+  }
+  counter -= 100.0;
+  updateButton();
+});
+upgrade1k.addEventListener("click", function () {
+  for(let i = 0; i < 1000; i++) { //Change growth rate. This is janky
+    requestAnimationFrame(step.bind(performance.now()));
+  }
+  counter -= 1000.0;
   updateButton();
 });
 
@@ -53,11 +69,11 @@ function setupButton(upgrade: HTMLButtonElement, translateXPercent: string) {
 }
 
 //Function to check if upgrade button has been clicked
-function checkUpgradeButton() {
-  if (counter >= 10.0) {
-    upgrade10.disabled = false; //Show button if counter is over 10
+function checkUpgradeButton(upgrade: HTMLButtonElement, amount: number) {
+  if (counter >= amount) {
+    upgrade.disabled = false; //Show button if counter is over 10
   } else {
-    upgrade10.disabled = true;
+    upgrade.disabled = true;
   }
 }
 
@@ -66,7 +82,9 @@ function updateButton() {
   //Code for rounding decimal places found at: https://stackoverflow.com/a/5623156
   const count = counter.toFixed(2).replace(/\.00$/, ""); //Rounds to the hundredths place
   button.innerText = `🧂 Levels Increased By x ${count}`;
-  checkUpgradeButton();
+  checkUpgradeButton(upgrade10, 10);
+  checkUpgradeButton(upgrade100, 100);
+  checkUpgradeButton(upgrade1k, 1000);
 }
 
 //Function that starts gradual growth of the counter value
