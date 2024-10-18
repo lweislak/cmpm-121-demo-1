@@ -10,7 +10,7 @@ header.innerHTML = gameName;
 app.append(header);
 
 //Declare variables
-const numberOfClicks = [0, 0 ,0];
+const numberOfClicks = [0, 0, 0];
 const cost = [10, 100, 1000];
 
 //Create Main Button (Step 1)
@@ -72,7 +72,6 @@ upgrade1k.addEventListener("click", function () {
   upgrade1k.innerText = `Play a match of League of Legends\nCost: ${roundHundredths(cost[2])}`;
   updateButton();
 });
-
 
 //Helper function to round numbers to hundredths place and return string
 //Code for rounding decimal places found at: https://stackoverflow.com/a/5623156
