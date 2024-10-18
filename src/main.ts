@@ -17,15 +17,24 @@ button.innerText = "🧂"; //Salt shaker emoji
 //Create upgrade buttons
 const Overwatch = document.createElement("button");
 Overwatch.innerText = `Play a match of Overwatch\nCost: 10`;
-setupButton(Overwatch, "translateX(65%)"); //Move button
+setupButton(Overwatch, "translateX(85%)"); //Move button
 
 const Valorant = document.createElement("button");
 Valorant.innerText = `Play a match of Valorant\nCost: 100`;
-setupButton(Valorant, "translateX(-170%)"); //Move button
+setupButton(Valorant, "translateX(-190%)"); //Move button
+
+const Apex = document.createElement("button");
+Apex.innerText = `Play a match of Apex Legends\nCost: 500`;
+setupButton(Apex, "translateY(300%)"); //Move button
+
+const Fortnite = document.createElement("button");
+Fortnite.innerText = `Play a match of Fortnite\nCost: 1000`;
+setupButton(Fortnite, "translateY(400%)"); //Move button
 
 const LoL = document.createElement("button");
-LoL.innerText = `Play a match of League of Legends\nCost: 1000`;
+LoL.innerText = `Play a match of League of Legends\nCost: 10000`;
 setupButton(LoL, "translateY(200%)"); //Move button
+
 
 interface Item {
   name: string;
@@ -33,13 +42,27 @@ interface Item {
   cost: number;
   rate: number;
   clicks: number;
+  description: string;
 }
 
 const avaliableItems: Item[] = [
-  { name: "Overwatch", button: Overwatch, cost: 10, rate: 0.1, clicks: 0 },
-  { name: "Valorant", button: Valorant, cost: 100, rate: 2.0, clicks: 0 },
-  { name: "League of Legends", button: LoL, cost: 1000, rate: 50, clicks: 0 },
+  { name: "Overwatch", button: Overwatch, cost: 10, rate: 0.1, clicks: 0,
+    description: 'New skins are avaliable for the low cost of $29.99!'
+  },
+  { name: "Valorant", button: Valorant, cost: 100, rate: 2.0, clicks: 0,
+    description: 'Another free to play hero shooter on the roster'
+  },
+  { name: "Apex Legends", button: Apex, cost: 500, rate: 35, clicks: 0,
+    description: 'Does anyone play this anymore?...Anyone?'
+  },
+  { name: "Fortnite", button: Fortnite, cost: 1000, rate: 50, clicks: 0,
+    description: 'Break your keyboard and yell at a child at the same time'
+  },
+  { name: "League of Legends", button: LoL, cost: 10000, rate: 500, clicks: 0,
+    description: 'Stop inting!'
+  },
 ];
+
 
 //Increment button counter
 let counter: number = 0.0;
@@ -48,8 +71,8 @@ button.addEventListener("click", function () {
   updateButton();
 });
 
-//Setup event listener that checks for a click if button is active
 for (const item of avaliableItems) {
+  //Event listener that checks for a click if button is active
   item.button.addEventListener("click", function () {
     requestAnimationFrame(step.bind(performance.now()));
     counter -= item.cost;
@@ -57,7 +80,13 @@ for (const item of avaliableItems) {
     item.button.innerText = `Play a match of ${item.name}\nCost: ${roundHundredths(item.cost)}`;
     updateButton();
   });
+
+  //Event listener that displays desription on mouse hover
+  item.button.addEventListener("mouseover", function () {
+    console.log(`${item.description}`);
+  });
 }
+
 
 //Helper function to round numbers to hundredths place and return string
 //Code for rounding decimal places found at: https://stackoverflow.com/a/5623156
