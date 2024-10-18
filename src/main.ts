@@ -9,16 +9,15 @@ const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
-//Declare variables
-const numberOfClicks = [0, 0, 0];
-const cost = [10, 100, 1000];
-
 //Create Main Button (Step 1)
 const button = document.createElement("button");
 app.append(button);
 button.innerText = "🧂"; //Salt shaker emoji
 
 //Create Cost 10 Upgrade Button (Step 5)
+const numberOfClicks = [0, 0, 0];
+const cost = [10, 100, 1000];
+
 const upgrade10 = document.createElement("button");
 upgrade10.innerText = `Play a match of Overwatch\nCost: ${cost[0]}`;
 setupButton(upgrade10, "translateX(65%)");
@@ -34,7 +33,7 @@ upgrade1k.innerText = `Play a match of League of Legends\nCost: ${cost[2]}`;
 setupButton(upgrade1k, "translateY(200%)");
 
 //Increment Counter (Step 2)
-let counter: number = 1000.0;
+let counter: number = 0.0;
 button.addEventListener("click", function () {
   counter += 1.0;
   updateButton();
