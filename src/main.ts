@@ -29,7 +29,6 @@ const upgrade1k = document.createElement("button");
 upgrade1k.innerText = "Play a match of League of Legends\nCost: 1,000";
 setupButton(upgrade1k, "translateY(200%)");
 
-
 //Increment Counter (Step 2)
 let counter: number = 1000.0;
 button.addEventListener("click", function () {
@@ -45,14 +44,16 @@ upgrade10.addEventListener("click", function () {
   updateButton();
 });
 upgrade100.addEventListener("click", function () {
-  for(let i = 0; i < 100; i++) { //Change growth rate. This is janky
+  for (let i = 0; i < 100; i++) {
+    //Change growth rate. This is janky
     requestAnimationFrame(step.bind(performance.now()));
   }
   counter -= 100.0;
   updateButton();
 });
 upgrade1k.addEventListener("click", function () {
-  for(let i = 0; i < 1000; i++) { //Change growth rate. This is janky
+  for (let i = 0; i < 1000; i++) {
+    //Change growth rate. This is janky
     requestAnimationFrame(step.bind(performance.now()));
   }
   counter -= 1000.0;
