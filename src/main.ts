@@ -9,7 +9,13 @@ const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
-//Create main button (Step 1)
+//Create seperate div elements for upgrade buttons
+const upgrade1Div = document.createElement("div");
+app.append(upgrade1Div);
+const upgrade2Div = document.createElement("div");
+app.append(upgrade2Div);
+
+//Create main button
 const button = document.createElement("button");
 app.append(button);
 button.innerText = "🧂"; //Salt shaker emoji
@@ -17,23 +23,24 @@ button.innerText = "🧂"; //Salt shaker emoji
 //Create upgrade buttons
 const Overwatch = document.createElement("button");
 Overwatch.innerText = `Play a match of Overwatch\nCost: 10`;
-setupButton(Overwatch, "translateX(85%)"); //Move button
+upgrade1Div.append(Overwatch);
 
 const Valorant = document.createElement("button");
 Valorant.innerText = `Play a match of Valorant\nCost: 100`;
-setupButton(Valorant, "translateX(-190%)"); //Move button
+upgrade1Div.append(Valorant);
 
 const Apex = document.createElement("button");
 Apex.innerText = `Play a match of Apex Legends\nCost: 500`;
-setupButton(Apex, "translateY(300%)"); //Move button
+upgrade2Div.append(Apex);
 
 const Fortnite = document.createElement("button");
 Fortnite.innerText = `Play a match of Fortnite\nCost: 1000`;
-setupButton(Fortnite, "translateY(400%)"); //Move button
+upgrade2Div.append(Fortnite);
 
 const LoL = document.createElement("button");
 LoL.innerText = `Play a match of League of Legends\nCost: 10000`;
-setupButton(LoL, "translateY(200%)"); //Move button
+upgrade2Div.append(LoL);
+
 
 interface Item {
   name: string;
@@ -44,14 +51,14 @@ interface Item {
   description: string;
 }
 
-const avaliableItems: Item[] = [
+const availableItems: Item[] = [
   {
     name: "Overwatch",
     button: Overwatch,
     cost: 10,
     rate: 0.1,
     clicks: 0,
-    description: "New skins are avaliable for the low cost of $29.99!",
+    description: "New skins are available for the low cost of $29.99!",
   },
   {
     name: "Valorant",
@@ -94,7 +101,8 @@ button.addEventListener("click", function () {
   updateButton();
 });
 
-for (const item of avaliableItems) {
+for (const item of availableItems) {
+  item.button.disabled = true; //Start with button disabled
   //Event listener that checks for a click if button is active
   item.button.addEventListener("click", function () {
     requestAnimationFrame(step.bind(performance.now()));
@@ -116,15 +124,6 @@ function roundHundredths(value: number) {
   return value.toFixed(2).replace(/\.00$/, ""); //Rounds to the hundredths place
 }
 
-//Function to setup button with specific parameters
-function setupButton(upgrade: HTMLButtonElement, translateXPercent: string) {
-  upgrade.style.position = "absolute";
-  upgrade.style.left = "50%";
-  upgrade.style.transform = translateXPercent;
-  app.append(upgrade);
-  upgrade.disabled = true; //Start with button disabled
-}
-
 //Function to check if upgrade button has been clicked
 function checkUpgradeButton(upgrade: HTMLButtonElement, amount: number) {
   if (counter >= amount) {
@@ -137,7 +136,7 @@ function checkUpgradeButton(upgrade: HTMLButtonElement, amount: number) {
 //Helper function that updates the button
 function updateButton() {
   button.innerText = `🧂 Levels Increased By x ${roundHundredths(counter)}`;
-  for (const item of avaliableItems) {
+  for (const item of availableItems) {
     checkUpgradeButton(item.button, item.cost);
   }
 }
