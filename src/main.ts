@@ -41,7 +41,6 @@ const LoL = document.createElement("button");
 LoL.innerText = `Play a match of League of Legends\nCost: 10000`;
 upgrade2Div.append(LoL);
 
-
 interface Item {
   name: string;
   button: HTMLButtonElement;
