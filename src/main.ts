@@ -121,7 +121,7 @@ for (const item of availableItems) {
     buttonHover.innerText = item.description;
     buttonHover.style.visibility = "visible";
   });
-  item.button.addEventListener("mouseout", function() {
+  item.button.addEventListener("mouseout", function () {
     buttonHover.style.visibility = "hidden";
   });
 }
