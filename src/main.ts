@@ -1,4 +1,6 @@
 import "./style.css";
+//Style inspired by: https://github.com/rozy-dixon/cmpm-121-demo-1/tree/main
+//and https://github.com/Cheristic/cmpm-121-demo-1/tree/main
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
