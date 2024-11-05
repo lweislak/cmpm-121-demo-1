@@ -19,6 +19,11 @@ app.append(upgrade2Div);
 const button = document.createElement("button");
 app.append(button);
 button.innerText = "🧂"; //Salt shaker emoji
+button.style.fontSize = "25px";
+
+//Create seperate div element for description on button hover
+const buttonHover = document.createElement("div");
+app.append(buttonHover);
 
 //Create upgrade buttons
 const Overwatch = document.createElement("button");
@@ -113,7 +118,11 @@ for (const item of availableItems) {
 
   //Event listener that displays desription on mouse hover
   item.button.addEventListener("mouseover", function () {
-    console.log(`${item.description}`);
+    buttonHover.innerText = item.description;
+    buttonHover.style.visibility = "visible";
+  });
+  item.button.addEventListener("mouseout", function() {
+    buttonHover.style.visibility = "hidden";
   });
 }
 
